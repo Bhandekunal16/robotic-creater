@@ -1,5 +1,5 @@
 class Core {
-  patterns = {
+  #patterns = {
     a: [" *** ", "*   *", "*****", "*   *", "*   *"],
     b: ["**** ", "*   *", "**** ", "*   *", "**** "],
     c: [" *** ", "*   *", "*    ", "*   *", " *** "],
@@ -30,16 +30,13 @@ class Core {
 
   application(inputWord) {
     inputWord = inputWord.toLowerCase();
-
     const patternHeight = 5;
     for (let row = 0; row < patternHeight; row++) {
       let line = "";
       for (let char of inputWord) {
-        if (this.patterns[char]) {
-          line += this.patterns[char][row] + "  ";
-        } else {
-          line += "     ";
-        }
+        this.#patterns[char]
+          ? (line += this.#patterns[char][row] + "  ")
+          : (line += "     ");
       }
       console.log(line);
     }
